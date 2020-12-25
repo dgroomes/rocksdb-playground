@@ -30,5 +30,7 @@ public class App {
         String message = repo.read("message");
 
         log.info("Found message: {}", message);
+
+        repo.shutdown();
     }
 }

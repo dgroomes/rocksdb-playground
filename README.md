@@ -1,11 +1,6 @@
 # rocksdb-playground
 
-NOT YET IMPLEMENTED. I'm having a hard time figuring out how to compile RocksDB with the right compiler flags and options.
-I compiled it but I guess it's missing the compression libraries like Snappy. Why do I even need to compile? Well, I was
-getting low-level failures reported by the Java. The RocksDB database was crashing for some reason (although I'm pretty
-sure it's because I'm running it on an M1 chip). So I can wait until I don't have to compile it when they ship an M1-supported
-version of rocksdb (which I think they will soon <https://github.com/facebook/rocksdb/pull/7714>), or I can figure out how
-to compile it the right way with all the compression libs included. 
+NOT YET IMPLEMENTED. 
 
 📚 Learning and exploring [RocksDB](https://github.com/facebook/rocksdb).
 

@@ -3,25 +3,49 @@ package dgroomes;
 import org.rocksdb.Options;
 import org.rocksdb.RocksDB;
 import org.rocksdb.RocksDBException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+/**
+ * A RocksDB implementation for the Repo interface. It will create a temporary directory to store the data and delete it
+ * upon program exit.
+ */
 public class RocksDbRepo implements Repo {
+
+    private static final Logger log = LoggerFactory.getLogger(RocksDbRepo.class);
 
     private RocksDB db;
 
+    private File dataDirectory;
+
     @Override
     public void init() {
-
         RocksDB.loadLibrary();
 
-        try (var options = new Options().setCreateIfMissing(true)) {
-            options.close();
-
-            db = RocksDB.open(options, "path/to/db");
-        } catch (RocksDBException e) {
-            throw new IllegalStateException("Someting went wrong when opening the RocksDB connection", e);
+        Path tempDir;
+        try {
+            tempDir = Files.createTempDirectory("rocksdb-playground");
+            log.debug("Created temporary directory to use as the RocksDB data directory: {}", tempDir);
+        } catch (IOException e) {
+            throw new IllegalStateException("Failed to create temporary directory for the RocksDB data.", e);
         }
+        dataDirectory = tempDir.toFile();
 
-        throw new IllegalStateException("not yet implemented");
+        try (var options = new Options().setCreateIfMissing(true)) {
+            db = RocksDB.open(options, dataDirectory.getAbsolutePath());
+        } catch (RocksDBException e) {
+            throw new IllegalStateException("Something went wrong when opening the RocksDB connection", e);
+        }
+    }
+
+    @Override
+    public void shutdown() {
+        log.debug("Shutting down. (TODO) Deleting the data files and data directory {}", dataDirectory.getAbsolutePath());
     }
 
     @Override
