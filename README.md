@@ -14,18 +14,19 @@ The project is split into sub-modules:
 
 * `app/` The application layer
 * `repo/` The interface definition for the repository layer 
-* `rocksdb-repo/`  An implementation of the repository layer using RocksDB 
+* `rocksdb-repo/`  An implementation of the repository layer using RocksDB
+  * See the README in [rocksdb-repo/](rocksdb-repo/) for more information.
 * `sqlite-repo/` An implementation of the repository layer using SQLite
 
 The application layer codes to a so-called *repository interface* and executes read and write operations to the repository.
 There are two concrete implementations of the repository interface. One implementation uses RocksDB and the other uses
-SQLite. I hope that this design can give us an apples-to-apples comparison of RocksDB vs SQLite for this particular workload. 
-
+SQLite. I hope that this design can give us an apples-to-apples comparison of RocksDB vs SQLite for this particular workload.
 
 ## Reference Material
 
 * [RocksDB GitHub site: *RocksJava Basics*](https://github.com/facebook/rocksdb/wiki/RocksJava-Basics)
 * [`gradle-playground`: *`multi-module` example Gradle project*](https://github.com/dgroomes/gradle-playground/tree/main/multi-module)
+* [`jshell-playground`: *`with-gradle` example Gradle project with JShell*](https://github.com/dgroomes/jshell-playground)
 
 
 ## TODO
