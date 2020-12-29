@@ -12,10 +12,16 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 /**
- * A RocksDB implementation for the Repo interface. It will create a temporary directory to store the data and delete it
- * upon program exit.
+ * This class defines a so-called "repository" abstraction over a RocksDB database. Think CRUD (Create, Read, Update,
+ * Delete), although I haven't implemented all of those methods.
+ *
+ * I might do away with this abstraction at some point as I get into more sophisticated RocksDB access patterns. But for
+ * now, the simple String-based "read" and "write" methods are a nice encapsulation over the RocksDB API.
+ *
+ * Note: This class will create a temporary directory to store the data and delete it upon program exit! This class is
+ * only meant for "learning and exploring" and not actual production use.
  */
-public class RocksDbRepo implements Repo {
+public class RocksDbRepo {
 
     private static final Logger log = LoggerFactory.getLogger(RocksDbRepo.class);
 
@@ -23,7 +29,9 @@ public class RocksDbRepo implements Repo {
 
     private File dataDirectory;
 
-    @Override
+    /**
+     * Initialize the RocksDB database. This must be called before the other methods can be used.
+     */
     public void init() {
         RocksDB.loadLibrary();
 
@@ -43,12 +51,18 @@ public class RocksDbRepo implements Repo {
         }
     }
 
-    @Override
+    /**
+     * Shutdown the database. This should be called before exiting the program.
+     */
     public void shutdown() {
         log.debug("Shutting down. (TODO) Deleting the data files and data directory {}", dataDirectory.getAbsolutePath());
     }
 
-    @Override
+    /**
+     * Read an entry by its key
+     * @param key the key of the entry
+     * @return the value of the entry
+     */
     public String read(String key) {
         var keyBytes = key.getBytes();
         try {
@@ -59,7 +73,11 @@ public class RocksDbRepo implements Repo {
         }
     }
 
-    @Override
+    /**
+     * Write an entry
+     * @param key the key of the entry
+     * @param value the value of the entry
+     */
     public void write(String key, String value) {
         var keyBytes = key.getBytes();
         var valueBytes = value.getBytes();
