@@ -48,4 +48,4 @@ General clean-ups, TODOs and things I wish to implement for this project:
 * DONE Define some utility methods to generate test data
 * Do a "range query". E.g. query by "key1" through "key10" or something like that
 * DONE Add a JShell setup script that `new`s up and initializes the database
-* Add a slf4j config file
+* DONE Add a slf4j config file

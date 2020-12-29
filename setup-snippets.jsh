@@ -5,6 +5,7 @@
 
 import dgroomes.RocksDbRepo;
 import dgroomes.TestData;
+import static dgroomes.TestData.writeTestData;
 
 var repo = new RocksDbRepo();
 repo.init();
