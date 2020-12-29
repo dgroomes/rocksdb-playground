@@ -8,4 +8,6 @@ set -eu
 programClasses="build/classes/java/main"
 depsFile="build/runtime-dependencies.txt"
 
-jshell --class-path "${programClasses}:$(cat "$depsFile")"
+jshell \
+--startup DEFAULT --startup setup-snippets.jsh \
+--class-path "${programClasses}:$(cat "$depsFile")"
