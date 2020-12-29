@@ -52,5 +52,7 @@ General clean-ups, TODOs and things I wish to implement for this project:
 
 * DONE Flesh out the README with instructions (in particular JShell-based instructions for exploring)
 * DONE Consolidate repo and rocksdb-repo into one
-* Define some utility methods to generate test data
+* DONE Define some utility methods to generate test data
 * Do a "range query". E.g. query by "key1" through "key10" or something like that
+* Add a JShell setup script that `new`s up and initializes the database
+* Add a slf4j config file
