@@ -3,7 +3,7 @@
 
 set -eu
 
-../gradlew build
+./gradlew build
 
 programClasses="build/classes/java/main"
 depsFile="build/runtime-dependencies.txt"
