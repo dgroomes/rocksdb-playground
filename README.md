@@ -16,7 +16,7 @@ A lot of it boils down to a clear view of performance. Is it faster on some spec
 This codebase is not meant to be executed in a "run-to-completion" fashion but rather should be used interactively in a
 [JShell](http://openjdk.java.net/jeps/222) session. This is useful for experimenting quickly. That said, here are some steps to get up and running.
 
-1. Pre-requisite: Use Java 15
+1. Pre-requisite: Use Java 21
 2. Load the program source code and library dependencies into a `jshell` session
     - ```shell
       ./jshell.sh
@@ -57,17 +57,18 @@ This codebase is not meant to be executed in a "run-to-completion" fashion but r
 
 General clean-ups, TODOs and things I wish to implement for this project:
 
-* [x] DONE Flesh out the README with instructions (in particular JShell-based instructions for exploring)
-* [x] DONE Consolidate repo and rocksdb-repo into one
-* [x] DONE Define some utility methods to generate test data
-* [ ] Do a "range query". E.g. query by "key1" through "key10" or something like that
-* [x] DONE Add a JShell setup script that `new`s up and initializes the database
-* [x] DONE Add a slf4j config file
-* [x] IN PROGRESS Upgrades across the board.
-* [ ] Emulate the ZIP codes example from my other database playground-style projects. I need something with higher volume.
+- [x] DONE Flesh out the README with instructions (in particular JShell-based instructions for exploring)
+- [x] DONE Consolidate repo and rocksdb-repo into one
+- [x] DONE Define some utility methods to generate test data
+- [ ] Do a "range query". E.g. query by "key1" through "key10" or something like that
+- [x] DONE Add a JShell setup script that `new`s up and initializes the database
+- [x] DONE Add a slf4j config file
+- [x] DONE Upgrades across the board.
+- [ ] Emulate the ZIP codes example from my other database playground-style projects. I need something with higher volume.
+- [ ] Handle shutdown.
 
 
 ## Reference
 
-* [RocksDB GitHub site: *RocksJava Basics*](https://github.com/facebook/rocksdb/wiki/RocksJava-Basics)
-* [`jshell-playground`: *`with-gradle` example Gradle project with JShell*](https://github.com/dgroomes/jshell-playground)
+- [RocksDB GitHub site: *RocksJava Basics*](https://github.com/facebook/rocksdb/wiki/RocksJava-Basics)
+- [`jshell-playground`: *`with-gradle` example Gradle project with JShell*](https://github.com/dgroomes/jshell-playground)

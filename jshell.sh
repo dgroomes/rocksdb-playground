@@ -9,6 +9,6 @@ programClasses="build/classes/java/main"
 programResources="build/resources/main"
 depsFile="build/runtime-dependencies.txt"
 
-jshell \
+exec jshell \
 --startup DEFAULT --startup setup-snippets.jsh \
 --class-path "${programClasses}:${programResources}:$(cat "$depsFile")"
