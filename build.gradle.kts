@@ -1,6 +1,6 @@
 plugins {
     java
-    id("dgroomes.dependencies-lister")
+    application
 }
 
 repositories {
@@ -15,4 +15,8 @@ dependencies {
     implementation("org.slf4j:slf4j-simple:$slf4jVersion")
 
     implementation("org.rocksdb:rocksdbjni:$rocksDbVersion")
+}
+
+application {
+    mainClass.set("dgroomes.Main")
 }

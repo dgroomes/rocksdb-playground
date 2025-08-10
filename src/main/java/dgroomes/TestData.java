@@ -27,4 +27,24 @@ public class TestData {
         }
         log.debug("Finished writes.");
     }
+    
+    /**
+     * Generate a test key for the given index
+     * 
+     * @param i the index
+     * @return the generated key
+     */
+    public static String generateKey(int i) {
+        return String.format("test-key-%d", i);
+    }
+    
+    /**
+     * Generate a test value for the given index
+     * 
+     * @param i the index
+     * @return the generated value
+     */
+    public static String generateValue(int i) {
+        return String.format("test-value-%d", i);
+    }
 }

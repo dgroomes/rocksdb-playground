@@ -61,13 +61,13 @@ public class RocksDbRepo {
     /**
      * Read an entry by its key
      * @param key the key of the entry
-     * @return the value of the entry
+     * @return the value of the entry, or null if not found
      */
     public String read(String key) {
         var keyBytes = key.getBytes();
         try {
             var value = db.get(keyBytes);
-            return new String(value);
+            return value != null ? new String(value) : null;
         } catch (RocksDBException e) {
             throw new IllegalStateException("Something went wrong when trying to 'get' an entry from the RocksDB database", e);
         }
