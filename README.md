@@ -17,48 +17,52 @@ A lot of it boils down to a clear view of performance. Is it faster on some spec
 
 ## Instructions
 
-Follow these instructions to build and run the example program.
+Follow these instructions to build and run the example programs.
 
 1. Use Java 21
-2. Build and run the program
+2. Run the basic demo
    * ```shell
-     ./gradlew run
+     ./gradlew runBasic
      ```
    * It should print something like the following.
    * ```text
-     11:38:42 [main] INFO dgroomes.Main - Let's learn about RocksDB! A high-performance embedded key-value store.
-     11:38:42 [main] INFO dgroomes.Main - 
-     11:38:42 [main] INFO dgroomes.Main - Writing and reading basic key-value pairs...
-     11:38:42 [main] INFO dgroomes.Main - Greeting: Hello, RocksDB!
-     11:38:42 [main] INFO dgroomes.Main - Language: Java
-     11:38:42 [main] INFO dgroomes.Main - Version: 10.2.1
-     11:38:42 [main] INFO dgroomes.Main - 
-     11:38:42 [main] INFO dgroomes.Main - Demonstrating range queries with sequential keys...
-     11:38:42 [main] INFO dgroomes.Main - Wrote 10 sequential items (item_01 through item_10)
-     11:38:42 [main] INFO dgroomes.Main - Reading items 3-5:
-     11:38:42 [main] INFO dgroomes.Main -   item_03 = Value for item 3
-     11:38:42 [main] INFO dgroomes.Main -   item_04 = Value for item 4
-     11:38:42 [main] INFO dgroomes.Main -   item_05 = Value for item 5
-     11:38:42 [main] INFO dgroomes.Main - 
-     11:38:42 [main] INFO dgroomes.Main - Generating and storing test data...
-     11:38:42 [main] INFO dgroomes.Main - Wrote 100 test entries in 2 ms
-     11:38:42 [main] INFO dgroomes.Main - Sample test data:
-     11:38:42 [main] INFO dgroomes.Main -   test-key-0 = test-value-0
-     11:38:42 [main] INFO dgroomes.Main -   test-key-25 = test-value-25
-     11:38:42 [main] INFO dgroomes.Main -   test-key-50 = test-value-50
-     11:38:42 [main] INFO dgroomes.Main -   test-key-75 = test-value-75
-     11:38:42 [main] INFO dgroomes.Main -   test-key-99 = test-value-99
-     11:38:42 [main] INFO dgroomes.Main - 
-     11:38:42 [main] INFO dgroomes.Main - Loading ZIP code data from zips.jsonl...
-     11:38:42 [main] INFO dgroomes.Main - Loaded 29,353 ZIP codes in 111 ms
-     11:38:42 [main] INFO dgroomes.Main - 
-     11:38:42 [main] INFO dgroomes.ZipCodeLoader - Sample ZIP code queries:
-     11:38:42 [main] INFO dgroomes.ZipCodeLoader -   ZIP 10001 -> {"city":"NEW YORK","state":"NY","pop":18913,"loc":[-73.99670500000001,40.74838]}
-     11:38:42 [main] INFO dgroomes.ZipCodeLoader -   ZIP 90210 -> {"city":"BEVERLY HILLS","state":"CA","pop":20700,"loc":[-118.406477,34.090107]}
-     11:38:42 [main] INFO dgroomes.ZipCodeLoader -   ZIP 60601 -> {"city":"CHICAGO","state":"IL","pop":4585,"loc":[-87.618123,41.885847]}
-     11:38:42 [main] INFO dgroomes.ZipCodeLoader -   ZIP 02134 -> {"city":"ALLSTON","state":"MA","pop":23775,"loc":[-71.13286600000001,42.353519]}
-     11:38:42 [main] INFO dgroomes.ZipCodeLoader -   ZIP 94102 -> {"city":"SAN FRANCISCO","state":"CA","pop":26908,"loc":[-122.416728,37.781334]}
-     11:38:42 [main] INFO dgroomes.Main - 
+     INFO dgroomes.BasicDemo - Created temporary directory for RocksDB: <...>
+     INFO dgroomes.BasicDemo - Writing and reading key-value pairs...
+     INFO dgroomes.BasicDemo - greeting: Hello, RocksDB!
+     INFO dgroomes.BasicDemo - language: Java
+     INFO dgroomes.BasicDemo - java_version: 25
+     INFO dgroomes.BasicDemo -
+     INFO dgroomes.BasicDemo - Reading a range of sequential entries...
+     INFO dgroomes.BasicDemo - Wrote 10 sequential items (item_01 through item_10)
+     INFO dgroomes.BasicDemo - Reading a slice of them (items 3 - 6):
+     INFO dgroomes.BasicDemo -   item_03 = Value for item 3
+     INFO dgroomes.BasicDemo -   item_04 = Value for item 4
+     INFO dgroomes.BasicDemo -   item_05 = Value for item 5
+     INFO dgroomes.BasicDemo -   item_06 = Value for item 6
+     INFO dgroomes.BasicDemo - Cleaning up temporary directory: <...>
+     ```
+3. Run the batch demo
+   * ```shell
+     ./gradlew runBatch
+     ```
+   * It should print something like the following.
+   * ```text
+     INFO dgroomes.BatchDemo - Created temporary directory for RocksDB: <...>
+     INFO dgroomes.BatchDemo - Loading ZIP Codes...
+     INFO dgroomes.BatchDemo - Loaded 5,000 ZIP codes...
+     INFO dgroomes.BatchDemo - Loaded 10,000 ZIP codes...
+     INFO dgroomes.BatchDemo - Loaded 15,000 ZIP codes...
+     INFO dgroomes.BatchDemo - Loaded 20,000 ZIP codes...
+     INFO dgroomes.BatchDemo - Loaded 25,000 ZIP codes...
+     INFO dgroomes.BatchDemo - Loaded 29,353 ZIP codes in PT0.152663S
+     INFO dgroomes.BatchDemo -
+     INFO dgroomes.BatchDemo - Read the first 5 ZIP codes in California...
+     INFO dgroomes.BatchDemo -   90001 (CA) -> City: LOS ANGELES, Pop: 51,841
+     INFO dgroomes.BatchDemo -   90002 (CA) -> City: LOS ANGELES, Pop: 40,629
+     INFO dgroomes.BatchDemo -   90003 (CA) -> City: LOS ANGELES, Pop: 53,938
+     INFO dgroomes.BatchDemo -   90004 (CA) -> City: LOS ANGELES, Pop: 64,062
+     INFO dgroomes.BatchDemo -   90005 (CA) -> City: LOS ANGELES, Pop: 35,864
+     INFO dgroomes.BatchDemo - Cleaning up temporary directory: <...>
      ```
 
 
@@ -69,15 +73,21 @@ General clean-ups, TODOs and things I wish to implement for this project:
 - [x] DONE Flesh out the README with instructions (in particular JShell-based instructions for exploring)
 - [x] DONE Consolidate repo and rocksdb-repo into one
 - [x] DONE Define some utility methods to generate test data
-- [ ] Do a "range query". E.g. query by "key1" through "key10" or something like that
+- [x] DONE Do a "range query". E.g. query by "key1" through "key10" using an iterator
 - [x] DONE Add a JShell setup script that `new`s up and initializes the database
 - [x] DONE Add a slf4j config file
 - [x] DONE Upgrades across the board.
 - [x] DONE (the LLM did it without asking.. I'll keep it but only as a first take) Emulate the ZIP codes example from my other database playground-style projects. I need something with higher volume.
+- [ ] IN PROGRESS Split into sub-projects
+   - DONE Pre-work is to split into two classes
+   - Split into actual different sub-projects
 - [ ] High volume data. Use the ZIP codes domain data. I want to see timings and volume (MB, GB) when writing, querying and compacting. Maybe up to 1GB is a good compromise.
    * This needs to write a run of data, then a new run of data that must be merged (key overlap) with the existing data. We don't want to accidentally paper over real world complexity.
 - [ ] Handle shutdown properly (clean up temp directory)
 - [x] DONE Remove JShell (I like it in general, but a tutorial has a limited budget of stuff/content)
+- [x] DONE Use Jackson instead of the silly parsing the LLM wrote
+- [x] DONE Do not use the repo pattern. I want the code to directly use the Rocks Java APIs for the sake of an effective/pure tutorial.
+- [ ] There has to be some useful abstraction for expressing fixed-width schemas of types, to make it easy to work with keys. I guess Java's ValueLayout APIs that were made as part of the Foreign Memory Access work? Or maybe something in the realm of FlatBuffers or something?
 
 
 ## Reference
