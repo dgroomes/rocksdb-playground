@@ -93,4 +93,3 @@ General clean-ups, TODOs and things I wish to implement for this project:
 ## Reference
 
 - [RocksDB GitHub site: *RocksJava Basics*](https://github.com/facebook/rocksdb/wiki/RocksJava-Basics)
-- [`jshell-playground`: *`with-gradle` example Gradle project with JShell*](https://github.com/dgroomes/jshell-playground)
